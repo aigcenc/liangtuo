@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广州量拓科技有限公司 - AI 定义未来健康</title>
+    <meta name="description" content="广州量拓科技有限公司是人工智能健康领域的开拓者，我们利用深度学习和计算机视觉技术，提供革命性的健康量化解决方案，重新定义您与健康数据的交互方式。">
+    <meta name="keywords" content="AI健康, 深度学习, 计算机视觉, 健康量化, 智能营养, 广州量拓科技">
+    <style>
+        :root {
+            --primary-color: #00aaff;
+            --secondary-color: #00e5ff;
+            --bg-color: #0a192f;
+            --card-bg-color: #112240;
+            --text-color: #ccd6f6;
+            --heading-color: #ffffff;
+            --light-gray: #8892b0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+        h1, h2, h3, h4 {
+            color: var(--heading-color);
+            font-weight: 600;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.8rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        section {
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        /* --- 动画效果 --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* --- 导航栏 --- */
+        header {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            text-decoration: none;
+        }
+        .logo span { color: var(--primary-color); }
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links li {
+            padding: 0 20px;
+            counter-increment: item 1;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links a::before {
+            content: '0' counter(item) '.';
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .lang-switch button:hover {
+            background: rgba(0, 170, 255, 0.1);
+        }
+
+        /* --- 英雄区域 --- */
+        .hero {
+            padding: 200px 0 150px 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background-color: var(--bg-color); /* Fallback */
+            background-blend-mode: multiply;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+        }
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+        .hero p.subtitle {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: var(--light-gray);
+        }
+        .hero .cta-button {
+            background: var(--primary-color);
+            color: var(--heading-color);
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--primary-color);
+        }
+        .hero .cta-button:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        /* --- 特性/解决方案卡片 --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .feature-item {
+            background: var(--card-bg-color);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #1d2d4d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.7);
+        }
+        .feature-item .icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            display: block;
+        }
+        .feature-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        /* --- 核心技术 --- */
+        #technology { background-color: var(--card-bg-color); }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .tech-image img {
+            width: 100%;
+            border-radius: 8px;
+            opacity: 0.6;
+        }
+        .tech-list .tech-item {
+            margin-bottom: 25px;
+        }
+        .tech-list h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* --- 应用场景 --- */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .audience-item {
+            padding: 30px;
+            border: 1px solid var(--card-bg-color);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        .audience-item:hover {
+            background-color: var(--card-bg-color);
+        }
+        .audience-item .icon {
+            font-size: 3rem; margin-bottom: 20px; color: var(--secondary-color);
+        }
+        .audience-item h3 { font-size: 1.5rem; margin-bottom: 10px; }
+
+        /* --- 使命与愿景 --- */
+        #mission { background: url('https://images.unsplash.com/photo-1614270279812-3b80b7c42a22?q=80&w=1932&auto=format&fit=crop') no-repeat center center/cover; background-attachment: fixed;}
+        .mission-content {
+            background-color: rgba(10, 25, 47, 0.8);
+            padding: 50px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .mission-content h3 { font-size: 2rem; color: var(--primary-color); }
+        .mission-content p { font-size: 1.1rem; }
+
+        /* --- 新闻动态 --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .news-item {
+            background: var(--card-bg-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .news-item:hover { transform: translateY(-5px); }
+        .news-item img { width: 100%; height: 200px; object-fit: cover; }
+        .news-content { padding: 25px; }
+        .news-content .date { font-size: 0.8rem; color: var(--light-gray); margin-bottom: 10px;}
+        .news-content h4 { font-size: 1.2rem; margin-bottom: 15px; }
+        .news-content a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+
+        /* --- 联系我们 --- */
+        #contact { text-align: center; }
+        .contact-content { max-width: 600px; margin: 0 auto; }
+        .contact-content .cta-button {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 30px;
+        }
+        .contact-content .cta-button:hover {
+            background: rgba(0, 170, 255, 0.1);
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #1d2d4d;
+            margin-top: 50px;
+            color: var(--light-gray);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            .tech-grid { grid-template-columns: 1fr; }
+            .audience-grid { grid-template-columns: 1fr; }
+            .tech-image { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" data-lang-key="company_name_short">量拓<span>科技</span></a>
+                <ul class="nav-links">
+                    <li><a href="#features" data-lang-key="nav_solutions">解决方案</a></li>
+                    <li><a href="#technology" data-lang-key="nav_tech">核心技术</a></li>
+                    <li><a href="#mission" data-lang-key="nav_about">关于我们</a></li>
+                    <li><a href="#news" data-lang-key="nav_news">新闻动态</a></li>
+                    <li><a href="#contact" data-lang-key="nav_contact">联系我们</a></li>
+                </ul>
+                <div class="lang-switch">
+                    <button id="lang-btn">English</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container fade-in">
+                <p class="subtitle" data-lang-key="hero_intro" style="color:var(--primary-color); font-size: 1.1rem;">广州量拓科技有限公司</p>
+                <h1 data-lang-key="hero_title">AI 定义未来健康<br><span>量化每一刻精彩</span></h1>
+                <p class="subtitle" data-lang-key="hero_subtitle">我们致力于成为全球领先的AI健康服务商，通过革命性的视觉识别与数据分析技术，赋能每个人精准掌控自己的健康未来。</p>
+                <a href="#features" class="cta-button" data-lang-key="hero_cta">探索我们的解决方案</a>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2 data-lang-key="features_title">重塑健康管理的范式</h2>
+                <div class="features-grid">
+                    <div class="feature-item fade-in" style="animation-delay: 100ms;">
+                        <span class="icon">📸</span>
+                        <h3 data-lang-key="feature1_title">瞬时营养分析</h3>
+                        <p data-lang-key="feature1_desc">告别手动查询，拍照即刻获得食物的宏量与微量营养素分析。我们的算法能识别数万种菜品与食材，精度业界领先。</p>
+                    </div>
+                    <div class="feature-item fade-in" style="animation-delay: 200ms;">
+                        <span class="icon">🏃‍♂️</span>
+                        <h3 data-lang-key="feature2_title">智能运动追踪</h3>
+                        <p data-lang-key="feature2_desc">无需穿戴设备。通过手机摄像头，我们的AI引擎能精准捕捉动作轨迹，实时计算消耗，并提供专业姿态矫正建议。</p>
+                    </div>
+                    <div class="feature-item fade-in" style="animation-delay: 300ms;">
+                        <span class="icon">🧬</span>
+                        <h3 data-lang-key="feature3_title">超个性化健康引擎</h3>
+                        <p data-lang-key="feature3_desc">融合您的饮食、运动、甚至基因数据，构建独一无二的数字健康画像，为您生成动态调整的、可执行的健康方案。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technology">
+            <div class="container">
+                <h2 data-lang-key="tech_title">驱动创新的核心技术</h2>
+                <div class="tech-grid">
+                    <div class="tech-list fade-in">
+                        <div class="tech-item">
+                            <h3 data-lang-key="tech1_title">计算机视觉 (Computer Vision)</h3>
+                            <p data-lang-key="tech1_desc">我们自研的深度卷积神经网络模型，能够在高噪声、多角度、复杂光照环境下，实现对食物和人体姿态的像素级精准识别。</p>
+                        </div>
+                        <div class="tech-item">
+                            <h3 data-lang-key="tech2_title">深度学习 (Deep Learning)</h3>
+                            <p data-lang-key="tech2_desc">基于海量标注数据，我们的模型能够持续学习和进化，不断提升识别精度和泛化能力，理解更复杂的健康场景。</p>
+                        </div>
+                        <div class="tech-item">
+                            <h3 data-lang-key="tech3_title">大数据分析 (Big Data Analytics)</h3>
+                            <p data-lang-key="tech3_desc">我们构建了高效的数据处理与分析平台，从多维度数据中挖掘潜在的健康关联，为个性化推荐提供强大支撑。</p>
+                        </div>
+                    </div>
+                    <div class="tech-image fade-in" style="animation-delay: 200ms;">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="AI Technology Visualization">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="audience">
+            <div class="container">
+                <h2 data-lang-key="audience_title">为不同角色的您而设计</h2>
+                <div class="audience-grid">
+                    <div class="audience-item fade-in" style="animation-delay: 100ms;">
+                        <div class="icon">👤</div>
+                        <h3 data-lang-key="audience1_title">健康追求者</h3>
+                        <p data-lang-key="audience1_desc">轻松记录，科学管理。让健康生活方式的每一步都清晰可见，充满成就感。</p>
+                    </div>
+                    <div class="audience-item fade-in" style="animation-delay: 200ms;">
+                        <div class="icon">🧑‍⚕️</div>
+                        <h3 data-lang-key="audience2_title">专业营养师</h3>
+                        <p data-lang-key="audience2_desc">高效的客户数据收集与分析工具，让您能更专注于提供高价值的专业咨询服务。</p>
+                    </div>
+                    <div class="audience-item fade-in" style="animation-delay: 300ms;">
+                        <div class="icon">🏋️</div>
+                        <h3 data-lang-key="audience3_title">健身房与机构</h3>
+                        <p data-lang-key="audience3_desc">为您的会员提供增值AI健康服务，打造智能化、数据化的健身体验，提升核心竞争力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission">
+            <div class="container">
+                <div class="mission-content fade-in">
+                    <h3 data-lang-key="mission_title">我们的使命与愿景</h3>
+                    <p data-lang-key="mission_desc">我们的使命是“量化健康，拓宽生命”。我们坚信，通过AI技术揭示隐藏在日常行为背后的健康数据，能够赋予每个人前所未有的能力去管理生命质量、拓展生命边界。我们致力于构建一个无缝、智能、深度个性化的全球健康管理生态系统。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="news">
+            <div class="container">
+                <h2 data-lang-key="news_title">公司动态</h2>
+                <div class="news-grid">
+                    <div class="news-item fade-in" style="animation-delay: 100ms;">
+                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1995&auto=format&fit=crop" alt="News 1">
+                        <div class="news-content">
+                            <p class="date">2025年6月18日</p>
+                            <h4 data-lang-key="news1_title">量拓科技完成千万级天使轮融资</h4>
+                            <a href="#" data-lang-key="read_more">阅读更多 &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="news-item fade-in" style="animation-delay: 200ms;">
+                        <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=2070&auto=format&fit=crop" alt="News 2">
+                        <div class="news-content">
+                            <p class="date">2025年5月25日</p>
+                            <h4 data-lang-key="news2_title">我们的营养识别算法在国际大赛中荣获金奖</h4>
+                            <a href="#" data-lang-key="read_more">阅读更多 &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="news-item fade-in" style="animation-delay: 300ms;">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop" alt="News 3">
+                        <div class="news-content">
+                            <p class="date">2025年4月30日</p>
+                            <h4 data-lang-key="news3_title">量拓科技与国内顶尖三甲医院达成战略合作</h4>
+                            <a href="#" data-lang-key="read_more">阅读更多 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container contact-content fade-in">
+                <h2 data-lang-key="contact_title">开启未来健康之旅</h2>
+                <p data-lang-key="contact_intro">我们正在寻找充满激情的合作伙伴与人才，共同定义下一个时代的健康科技。无论您是寻求业务合作，还是希望加入我们，都欢迎与我们联系。</p>
+                <a href="mailto:support@aifreegen.com" class="cta-button" data-lang-key="contact_cta">立即联系</a>
+                <div style="margin-top: 40px; color: var(--light-gray);">
+                    <p><strong data-lang-key="company_name_full">广州量拓科技有限公司</strong></p>
+                    <p data-lang-key="company_address">地址：广州市天河区灵山东路4号407、408单元E97房</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 <span data-lang-key="footer_company">广州量拓科技有限公司</span>. <span data-lang-key="footer_rights">版权所有.</span></p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            'zh-CN': {
+                company_name_short: '量拓<span>科技</span>',
+                nav_solutions: '解决方案',
+                nav_tech: '核心技术',
+                nav_about: '关于我们',
+                nav_news: '新闻动态',
+                nav_contact: '联系我们',
+                hero_intro: '广州量拓科技有限公司',
+                hero_title: 'AI 定义未来健康<br><span>量化每一刻精彩</span>',
+                hero_subtitle: '我们致力于成为全球领先的AI健康服务商，通过革命性的视觉识别与数据分析技术，赋能每个人精准掌控自己的健康未来。',
+                hero_cta: '探索我们的解决方案',
+                features_title: '重塑健康管理的范式',
+                feature1_title: '瞬时营养分析',
+                feature1_desc: '告别手动查询，拍照即刻获得食物的宏量与微量营养素分析。我们的算法能识别数万种菜品与食材，精度业界领先。',
+                feature2_title: '智能运动追踪',
+                feature2_desc: '无需穿戴设备。通过手机摄像头，我们的AI引擎能精准捕捉动作轨迹，实时计算消耗，并提供专业姿态矫正建议。',
+                feature3_title: '超个性化健康引擎',
+                feature3_desc: '融合您的饮食、运动、甚至基因数据，构建独一无二的数字健康画像，为您生成动态调整的、可执行的健康方案。',
+                tech_title: '驱动创新的核心技术',
+                tech1_title: '计算机视觉 (Computer Vision)',
+                tech1_desc: '我们自研的深度卷积神经网络模型，能够在高噪声、多角度、复杂光照环境下，实现对食物和人体姿态的像素级精准识别。',
+                tech2_title: '深度学习 (Deep Learning)',
+                tech2_desc: '基于海量标注数据，我们的模型能够持续学习和进化，不断提升识别精度和泛化能力，理解更复杂的健康场景。',
+                tech3_title: '大数据分析 (Big Data Analytics)',
+                tech3_desc: '我们构建了高效的数据处理与分析平台，从多维度数据中挖掘潜在的健康关联，为个性化推荐提供强大支撑。',
+                audience_title: '为不同角色的您而设计',
+                audience1_title: '健康追求者',
+                audience1_desc: '轻松记录，科学管理。让健康生活方式的每一步都清晰可见，充满成就感。',
+                audience2_title: '专业营养师',
+                audience2_desc: '高效的客户数据收集与分析工具，让您能更专注于提供高价值的专业咨询服务。',
+                audience3_title: '健身房与机构',
+                audience3_desc: '为您的会员提供增值AI健康服务，打造智能化、数据化的健身体验，提升核心竞争力。',
+                mission_title: '我们的使命与愿景',
+                mission_desc: '我们的使命是“量化健康，拓宽生命”。我们坚信，通过AI技术揭示隐藏在日常行为背后的健康数据，能够赋予每个人前所未有的能力去管理生命质量、拓展生命边界。我们致力于构建一个无缝、智能、深度个性化的全球健康管理生态系统。',
+                news_title: '公司动态',
+                news1_title: '量拓科技完成千万级天使轮融资',
+                news2_title: '我们的营养识别算法在国际大赛中荣获金奖',
+                news3_title: '量拓科技与国内顶尖三甲医院达成战略合作',
+                read_more: '阅读更多 &rarr;',
+                contact_title: '开启未来健康之旅',
+                contact_intro: '我们正在寻找充满激情的合作伙伴与人才，共同定义下一个时代的健康科技。无论您是寻求业务合作，还是希望加入我们，都欢迎与我们联系。',
+                contact_cta: '立即联系',
+                company_name_full: '广州量拓科技有限公司',
+                company_address: '地址：广州市天河区灵山东路4号407、408单元E97房',
+                footer_company: '广州量拓科技有限公司',
+                footer_rights: '版权所有.',
+                lang_btn_text: 'English'
+            },
+            'en': {
+                company_name_short: 'Liangtuo<span>Tech</span>',
+                nav_solutions: 'Solutions',
+                nav_tech: 'Technology',
+                nav_about: 'About Us',
+                nav_news: 'News',
+                nav_contact: 'Contact',
+                hero_intro: 'Guangzhou Liangtuo Technology Co., Ltd.',
+                hero_title: 'AI Defines the Future of Health<br><span>Quantifying Every Moment</span>',
+                hero_subtitle: 'We are dedicated to becoming a global leader in AI health services, empowering every individual to precisely control their health future through revolutionary visual recognition and data analysis technologies.',
+                hero_cta: 'Explore Our Solutions',
+                features_title: 'Reshaping the Paradigm of Health Management',
+                feature1_title: 'Instant Nutritional Analysis',
+                feature1_desc: 'Forget manual lookups. Get instant macro and micronutrient analysis of your food just by taking a picture. Our algorithm recognizes tens of thousands of dishes and ingredients with industry-leading accuracy.',
+                feature2_title: 'Smart Fitness Tracking',
+                feature2_desc: 'No wearable devices needed. Through your phone\'s camera, our AI engine accurately captures motion trajectories, calculates expenditure in real-time, and provides professional posture correction advice.',
+                feature3_title: 'Hyper-Personalized Health Engine',
+                feature3_desc: 'We merge your dietary, exercise, and even genetic data to build a unique digital health profile, generating a dynamic and actionable health plan tailored just for you.',
+                tech_title: 'Core Technologies Driving Innovation',
+                tech1_title: 'Computer Vision',
+                tech1_desc: 'Our proprietary deep convolutional neural networks achieve pixel-level accuracy in identifying food and human poses, even in noisy, multi-angle, and complex lighting conditions.',
+                tech2_title: 'Deep Learning',
+                tech2_desc: 'Based on massive annotated datasets, our models continuously learn and evolve, constantly improving recognition accuracy and generalization capabilities to understand more complex health scenarios.',
+                tech3_title: 'Big Data Analytics',
+                tech3_desc: 'We have built an efficient data processing and analysis platform to uncover hidden health correlations from multidimensional data, providing powerful support for personalized recommendations.',
+                audience_title: 'Designed For Every User',
+                audience1_title: 'Health Enthusiasts',
+                audience1_desc: 'Effortless tracking, scientific management. Make every step of your healthy lifestyle visible and fulfilling.',
+                audience2_title: 'Professional Nutritionists',
+                audience2_desc: 'Efficient client data collection and analysis tools, allowing you to focus on providing high-value professional consulting services.',
+                audience3_title: 'Gyms & Institutions',
+                audience3_desc: 'Provide value-added AI health services to your members, creating an intelligent, data-driven fitness experience to enhance your core competitiveness.',
+                mission_title: 'Our Mission & Vision',
+                mission_desc: 'Our mission is to "Quantify Health, Broaden Life". We believe that by unveiling the health data hidden in daily behaviors, AI can empower individuals with unprecedented capabilities to manage their quality of life and expand its boundaries. We are committed to building a seamless, intelligent, and deeply personalized global health management ecosystem.',
+                news_title: 'Company News',
+                news1_title: 'Liangtuo Tech Secures Millions in Angel Round Funding',
+                news2_title: 'Our Nutrition Recognition Algorithm Wins Gold at International Competition',
+                news3_title: 'Liangtuo Tech Forms Strategic Partnership with Top National Hospital',
+                read_more: 'Read More &rarr;',
+                contact_title: 'Embark on the Future Health Journey',
+                contact_intro: 'We are looking for passionate partners and talents to define the next era of health technology. Whether you are seeking business collaboration or wish to join our team, we welcome you to get in touch.',
+                contact_cta: 'Contact Us Now',
+                company_name_full: 'Guangzhou Liangtuo Technology Co., Ltd.',
+                company_address: 'Address: Room E97, Units 407, 408, No. 4 Lingshan East Road, Tianhe District, Guangzhou',
+                footer_company: 'Guangzhou Liangtuo Technology Co., Ltd.',
+                footer_rights: 'All Rights Reserved.',
+                lang_btn_text: '中文'
+            }
+        };
+
+        // --- 语言切换逻辑 ---
+        const langBtn = document.getElementById('lang-btn');
+        let currentLang = 'zh-CN';
+
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            langBtn.textContent = translations[lang].lang_btn_text;
+
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        langBtn.addEventListener('click', () => {
+            const newLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
+            setLanguage(newLang);
+        });
+        
+        // --- 自动检测浏览器语言并设置 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.startsWith('en')) {
+                setLanguage('en');
+            } else {
+                setLanguage('zh-CN');
+            }
+        });
+    </script>
+</body>
+</html>
